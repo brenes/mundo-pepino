@@ -124,6 +124,8 @@ module MundoPepino
         (res.send child_field).should == child
       elsif field = field_for(res.class, raw_field)
         (res.send field).to_s.should == valor.to_s
+      elsif res.respond_to? raw_field
+        (res.send raw_field).to_s.should == valor.to_s
       else
         raise MundoPepino::FieldNotMapped.new(raw_field)
       end
